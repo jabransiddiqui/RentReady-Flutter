@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskapp/presentation/presentation.dart';
+import 'package:taskapp/presentation/widgets/dropdown/dropwndown.widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -37,17 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     width: 10,
                   ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      minimumSize: Size.zero,
-                      padding: EdgeInsets.zero,
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: Row(children: const [
-                      Icon(Icons.filter_alt),
-                      Text("Filter")
-                    ]),
-                    onPressed: () {},
+                  DropdownWidget(
+                    itemList: const ["StateCode", "StateOrProvince"],
+                    onChange: (index) {
+                      print(index);
+                    },
                   ),
                   const SizedBox(
                     width: 10,
