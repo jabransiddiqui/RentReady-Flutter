@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'business_logic/business_logic.dart';
 import 'presentation/presentation.dart';
 
 void main() {
@@ -12,13 +13,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Rent Ready',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return BlocProvider(
+      create: (context) => AccountsCubit(),
+      child: MaterialApp(
+        title: 'Rent Ready',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const HomeScreen(title: 'Rent Ready'),
       ),
-      home: const HomeScreen(title: 'Rent Ready'),
     );
   }
 }
