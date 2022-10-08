@@ -2,31 +2,32 @@ import 'dart:convert';
 
 class AccountModel {
   AccountModel({
-    this.value,
+    this.accountData,
   });
 
-  final List<Value>? value;
+  final List<AccountData>? accountData;
 
   factory AccountModel.fromJson(String str) =>
       AccountModel.fromMap(json.decode(str));
 
   String? toJson() => json.encode(toMap());
 
-  factory AccountModel.fromMap(Map<String?, dynamic?> json) => AccountModel(
-        value: json["value"] == null
+  factory AccountModel.fromMap(Map<String?, dynamic> json) => AccountModel(
+        accountData: json["value"] == null
             ? null
-            : List<Value>.from(json["value"].map((x) => Value.fromMap(x))),
+            : List<AccountData>.from(
+                json["value"].map((x) => AccountData.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
-        "value": value == null
+        "value": accountData == null
             ? null
-            : List<dynamic>.from(value!.map((x) => x.toMap())),
+            : List<dynamic>.from(accountData!.map((x) => x.toMap())),
       };
 }
 
-class Value {
-  Value({
+class AccountData {
+  AccountData({
     this.customertypecode,
     this.address1Latitude,
     this.merged,
@@ -94,48 +95,48 @@ class Value {
     this.defaultpricelevelidValue,
   });
 
-  final int? customertypecode;
-  final double? address1Latitude;
+  final dynamic customertypecode;
+  final dynamic address1Latitude;
   final bool? merged;
   final String? accountnumber;
-  final int? statecode;
+  final dynamic statecode;
   final String? emailaddress1;
-  final int? exchangerate;
-  final int? openrevenueState;
+  final dynamic exchangerate;
+  final dynamic openrevenueState;
   final String? name;
-  final int? opendeals;
+  final dynamic opendeals;
   final DateTime? modifiedon;
-  final int? address2Addresstypecode;
+  final dynamic address2Addresstypecode;
   final String? owninguserValue;
-  final int? importsequencenumber;
+  final dynamic importsequencenumber;
   final String? address1Composite;
-  final double? address1Longitude;
+  final dynamic address1Longitude;
   final bool? donotpostalmail;
-  final int? accountratingcode;
+  final dynamic accountratingcode;
   final bool? marketingonly;
   final bool? donotphone;
-  final int? preferredcontactmethodcode;
+  final dynamic preferredcontactmethodcode;
   final String? owneridValue;
-  final int? customersizecode;
+  final dynamic customersizecode;
   final DateTime? openrevenueDate;
-  final int? openrevenueBase;
-  final int? businesstypecode;
+  final dynamic openrevenueBase;
+  final dynamic businesstypecode;
   final bool? donotemail;
-  final int? address2Shippingmethodcode;
+  final dynamic address2Shippingmethodcode;
   final String? address1Addressid;
   final bool? msdynGdproptout;
-  final int? address2Freighttermscode;
-  final int? statuscode;
+  final dynamic address2Freighttermscode;
+  final dynamic statuscode;
   final DateTime? createdon;
-  final int? msdynTravelchargetype;
-  final int? opendealsState;
+  final dynamic msdynTravelchargetype;
+  final dynamic opendealsState;
   final String? address1Stateorprovince;
-  final int? openrevenue;
+  final dynamic openrevenue;
   final bool? donotsendmm;
   final bool? donotfax;
   final bool? donotbulkpostalmail;
   final String? address1Country;
-  final int? versionnumber;
+  final dynamic versionnumber;
   final String? address1Line1;
   final bool? creditonhold;
   final String? telephone1;
@@ -144,27 +145,28 @@ class Value {
   final bool? donotbulkemail;
   final String? modifiedbyValue;
   final bool? followemail;
-  final int? shippingmethodcode;
-  final int? address1Freighttermscode;
+  final dynamic shippingmethodcode;
+  final dynamic address1Freighttermscode;
   final String? createdbyValue;
   final String? address1City;
-  final int? territorycode;
+  final dynamic territorycode;
   final String? msdynServiceterritoryValue;
-  final int? ownershipcode;
+  final dynamic ownershipcode;
   final String? fax;
   final bool? msdynTaxexempt;
   final bool? participatesinworkflow;
-  final int? accountclassificationcode;
+  final dynamic accountclassificationcode;
   final String? owningbusinessunitValue;
   final String? address2Addressid;
   final String? address1Postalcode;
   final String? defaultpricelevelidValue;
 
-  factory Value.fromJson(String str) => Value.fromMap(json.decode(str));
+  factory AccountData.fromJson(String str) =>
+      AccountData.fromMap(json.decode(str));
 
   String? toJson() => json.encode(toMap());
 
-  factory Value.fromMap(Map<String, dynamic> json) => Value(
+  factory AccountData.fromMap(Map<String, dynamic> json) => AccountData(
         customertypecode: json["customertypecode"],
         address1Latitude: json["address1_latitude"],
         merged: json["merged"],

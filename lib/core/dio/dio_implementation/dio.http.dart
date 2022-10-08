@@ -6,6 +6,7 @@ import '/core/core.dart';
 class HTTP implements IHTTP {
   final Dio _dio = Dio();
   HTTP._privateConstructor() {
+    _dio.options.baseUrl = ApiRoutes.originUrl;
     _dio.interceptors.add(TokenInterceptors());
   }
 

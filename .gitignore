@@ -1,3 +1,5 @@
+#AppSecret
+app.secrets.dart
 # Miscellaneous
 *.class
 *.lock

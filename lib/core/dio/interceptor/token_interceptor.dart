@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
+import '/env/app.secrets.dart';
 
 class TokenInterceptors extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    options.headers['Authorization'] = '';
-    options.headers["Cookie"] = '';
+    options.headers['Authorization'] = 'Bearer $accessToken';
+    options.headers["Cookie"] = cookies;
     handler.next(options);
   }
 
