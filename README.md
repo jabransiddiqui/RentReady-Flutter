@@ -19,3 +19,5 @@ Plugin and there version used in this repository.
 | Plugin | Pub |
 |--------|-----|
 | [flutter_bloc](./packages/flutter_bloc/) | [![Pub](https://img.shields.io/pub/v/flutter_bloc.svg?style=flat-square)](https://pub.dartlang.org/packages/flutter_bloc) |
+| [equatable](./packages/equatable/) | [![Pub](https://img.shields.io/pub/v/equatable.svg?style=flat-square)](https://pub.dartlang.org/packages/equatable) |
+| [dio](./packages/dio:/) | [![Pub](https://img.shields.io/pub/v/dio.svg?style=flat-square)](https://pub.dartlang.org/packages/dio) |
