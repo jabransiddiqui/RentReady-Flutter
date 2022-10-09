@@ -89,8 +89,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? ListView.builder(
                                 itemCount: state.accountsModel?.length ?? 0,
                                 itemBuilder: (context, i) {
-                                  return AccountListRowWidget(
-                                      data[i], state.isList);
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailScreen(data[i])));
+                                    },
+                                    child: AccountListRowWidget(
+                                        data[i], state.isList),
+                                  );
                                 },
                               )
                             : GridView.builder(
@@ -100,8 +108,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                         crossAxisCount: 2,
                                         childAspectRatio: (1 / 1.12)),
                                 itemBuilder: (BuildContext context, int i) {
-                                  return AccountListRowWidget(
-                                      data[i], state.isList);
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  DetailScreen(data[i])));
+                                    },
+                                    child: AccountListRowWidget(
+                                        data[i], state.isList),
+                                  );
                                 },
                                 shrinkWrap: true,
                               ),
