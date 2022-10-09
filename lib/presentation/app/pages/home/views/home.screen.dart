@@ -5,10 +5,7 @@ import '/business_logic/business_logic.dart';
 import '/presentation/presentation.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.title});
-
-  final String title;
-
+  const HomeScreen({super.key});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -19,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         shadowColor: Colors.transparent,
-        title: Text(widget.title),
+        title: const Text('Rent Ready'),
       ),
       body: BlocBuilder<AccountsCubit, AccountsState>(
         builder: (context, state) {
