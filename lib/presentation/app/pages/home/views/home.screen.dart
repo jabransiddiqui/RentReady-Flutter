@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CircularProgressIndicator(),
                 ));
           } else if (state.accountsModel != null &&
-              (state.accountsModel?.length ?? 0) > 0) {
+              (state.accountsModel?.length ?? 0) >= 0) {
             final data = state.accountsModel ?? [];
             return Container(
               margin: const EdgeInsets.all(10),
@@ -41,20 +41,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 60,
                     child: Row(
                       children: [
-                        const Expanded(
-                            child: TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.search),
-                            hintText: 'Search',
-                          ),
-                        )),
+                        Expanded(
+                            child: SearchFieldWidget(
+                                onChanged: (value) {
+                                  context
+                                      .read<AccountsCubit>()
+                                      .searchAccount(value);
+                                },
+                                title: 'Search')),
                         const SizedBox(
                           width: 10,
                         ),
                         DropdownWidget(
                           itemList: const ["StateCode", "StateOrProvince"],
                           onChange: (index) {
-                            print(index);
+                            context
+                                .read<AccountsCubit>()
+                                .filterBy(index == 0 ? true : false);
                           },
                         ),
                         const SizedBox(
@@ -66,8 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             padding: EdgeInsets.zero,
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
-                          child: const Icon(Icons.grid_view),
-                          onPressed: () {},
+                          child: state.isList
+                              ? const Icon(Icons.grid_view)
+                              : const Icon(Icons.list),
+                          onPressed: () {
+                            context.read<AccountsCubit>().changeView();
+                          },
                         )
                       ],
                     ),
@@ -76,27 +83,48 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 10,
                   ),
                   Expanded(
-                      child: ListView.builder(
-                    itemCount: state.accountsModel?.length ?? 0,
-                    itemBuilder: (context, i) {
-                      return AccountListRowWidget(data[i]);
-                    },
-                  ))
+                    child: data.isEmpty
+                        ? noWidgetMethod('No match found with you search key')
+                        : state.isList
+                            ? ListView.builder(
+                                itemCount: state.accountsModel?.length ?? 0,
+                                itemBuilder: (context, i) {
+                                  return AccountListRowWidget(
+                                      data[i], state.isList);
+                                },
+                              )
+                            : GridView.builder(
+                                itemCount: data.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: (1 / 1.12)),
+                                itemBuilder: (BuildContext context, int i) {
+                                  return AccountListRowWidget(
+                                      data[i], state.isList);
+                                },
+                                shrinkWrap: true,
+                              ),
+                  )
                 ],
               ),
             );
           } else {
-            return NoDataWidget(
-              image: Image.asset(
-                'nodatafound'.png,
-                height: 220,
-              ),
-              text: 'No account data/error while fetching.',
-              cross: Container(),
-            );
+            return noWidgetMethod('No account data/error while fetching.');
           }
         },
       ),
+    );
+  }
+
+  NoDataWidget noWidgetMethod(String text) {
+    return NoDataWidget(
+      image: Image.asset(
+        'nodatafound'.png,
+        height: 220,
+      ),
+      text: text,
+      cross: Container(),
     );
   }
 }

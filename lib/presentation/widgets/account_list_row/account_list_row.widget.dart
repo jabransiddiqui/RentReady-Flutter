@@ -3,8 +3,9 @@ import '/data/data.dart';
 import '/extensions/extension.dart';
 
 class AccountListRowWidget extends StatelessWidget {
-  const AccountListRowWidget(this._accountData, {super.key});
+  const AccountListRowWidget(this._accountData, this.isList, {super.key});
   final AccountData _accountData;
+  final bool isList;
 
   @override
   Widget build(BuildContext context) {
@@ -12,48 +13,66 @@ class AccountListRowWidget extends StatelessWidget {
       margin: const EdgeInsets.all(5),
       padding: const EdgeInsets.all(10),
       color: const Color.fromARGB(255, 226, 226, 226),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 120,
-            height: 80,
-            child: _accountData.entityimageurl == null
-                ? Image.asset('noimage'.png)
-                : FadeInImage(
-                    image: NetworkImage(_accountData.entityimageurl ?? ''),
-                    placeholder: AssetImage('noimage'.png)),
-          ),
-          Expanded(
-            child: Container(
-              height: 80,
-              margin: const EdgeInsets.only(left: 10),
-              child: Column(
+      child: isList
+          ? Row(
+              children: childsWidgets,
+            )
+          : Column(
+              mainAxisSize: MainAxisSize.max,
+              children: childsWidgets,
+            ),
+    );
+  }
+
+  List<Widget> get childsWidgets {
+    return [
+      SizedBox(
+        width: 120,
+        child: _accountData.entityimageurl == null
+            ? Image.asset('noimage'.png)
+            : FadeInImage(
+                image: NetworkImage(_accountData.entityimageurl ?? ''),
+                placeholder: AssetImage('noimage'.png)),
+      ),
+      !isList
+          ? const SizedBox(
+              height: 10,
+            )
+          : const SizedBox(),
+      Expanded(
+        child: Container(
+          margin: const EdgeInsets.only(left: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        _accountData.name ?? '',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        _accountData.address1Composite ?? '',
-                        style: const TextStyle(fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
+                  Flexible(
+                    child: Text(
+                      _accountData.name ?? '',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
                 ],
               ),
-            ),
-          )
-        ],
-      ),
-    );
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(
+                      overflow: TextOverflow.clip,
+                      _accountData.address1Composite ?? '',
+                      style: const TextStyle(fontWeight: FontWeight.w500),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      )
+    ];
   }
 }
