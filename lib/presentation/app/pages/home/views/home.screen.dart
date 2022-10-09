@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ));
           } else if (state.accountsModel != null &&
               (state.accountsModel?.length ?? 0) > 0) {
+            final data = state.accountsModel ?? [];
             return Container(
               margin: const EdgeInsets.all(10),
               child: Column(
@@ -75,12 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 10,
                   ),
                   Expanded(
-                      child: ListView(
-                    children: const [
-                      AccountListRowWidget(),
-                      AccountListRowWidget(),
-                      AccountListRowWidget()
-                    ],
+                      child: ListView.builder(
+                    itemCount: state.accountsModel?.length ?? 0,
+                    itemBuilder: (context, i) {
+                      return AccountListRowWidget(data[i]);
+                    },
                   ))
                 ],
               ),
