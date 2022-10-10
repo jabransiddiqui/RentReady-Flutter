@@ -1,13 +1,15 @@
 import '../../data.dart';
 
 class AccountsRepository {
-  AccountsRepository._privateConstructor();
+  /*AccountsRepository._privateConstructor();
 
   static final AccountsRepository _instance =
       AccountsRepository._privateConstructor();
-  static AccountsRepository get instance => _instance;
+  static AccountsRepository get instance => _instance;*/
+  AccountsRepository({AccountsAPI? accountsAPI})
+      : _accountsAPI = accountsAPI ?? AccountsAPI();
 
-  final AccountsAPI _accountsAPI = AccountsAPI();
+  final AccountsAPI _accountsAPI;
 
   Future<AccountModel> getAccounts() async {
     try {

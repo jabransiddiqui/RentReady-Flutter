@@ -1,24 +1,29 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskapp/business_logic/cubits/accounts/accounts.cubit.dart';
 import '/business_logic/business_logic.dart';
 import '/data/data.dart';
 import 'accounts_state.dart';
 
 class AccountsCubit extends Cubit<AccountsState> {
-  AccountsCubit() : super(AccountsError()) {
+  AccountsCubit(this.accountsRepository)
+      : super(const AccountsState(status: AccountsStatus.initial)) {
     getAccounts();
   }
+  final AccountsRepository accountsRepository;
   Future getAccounts() async {
     try {
-      emit(AccountsInitial());
-      final res = await AccountsRepository.instance.getAccounts();
+      emit(state.copyWith(status: AccountsStatus.loading));
+      final res = await accountsRepository.getAccounts();
       if (res.accountData != null && (res.accountData?.length ?? 0) > 0) {
         emit(state.copyWith(
-            accountsModel: res.accountData, allAccountsModel: res.accountData));
+            status: AccountsStatus.success,
+            accountsModel: res.accountData,
+            allAccountsModel: res.accountData));
       } else {
-        emit(AccountsError());
+        emit(state.copyWith(status: AccountsStatus.failure));
       }
     } catch (e) {
-      emit(AccountsError());
+      emit(state.copyWith(status: AccountsStatus.failure));
     }
   }
 
@@ -40,7 +45,7 @@ class AccountsCubit extends Cubit<AccountsState> {
         emit(state.copyWith(accountsModel: filter));
       }
     } catch (e) {
-      emit(AccountsError());
+      emit(state.copyWith(status: AccountsStatus.failure));
     }
   }
 
@@ -61,7 +66,7 @@ class AccountsCubit extends Cubit<AccountsState> {
         emit(state.copyWith(accountsModel: filter));
       }
     } catch (e) {
-      emit(AccountsError());
+      emit(state.copyWith(status: AccountsStatus.failure));
     }
   }
 }
