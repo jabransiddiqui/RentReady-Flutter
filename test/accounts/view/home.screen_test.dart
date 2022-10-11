@@ -70,26 +70,5 @@ void main() {
       );
       expect(find.byType(NoDataWidget), findsOneWidget);
     });
-
-    /*testWidgets('renders HomeScreen Success', (tester) async {
-      when(() => accountCubit.state).thenReturn(AccountsState(
-        status: AccountsStatus.success,
-        accountsModel: accountModelDummy.accountData,
-        allAccountsModel: accountModelDummy.accountData,
-        isList: true,
-      ));
-      await tester.pumpWidget(
-        RepositoryProvider.value(
-          value: accountRepository,
-          child: BlocProvider.value(
-            value: accountCubit,
-            child: const MaterialApp(
-              home: HomeScreen(),
-            ),
-          ),
-        ),
-      );
-      expect(find.byType(SuccessStateWidget), findsWidgets);
-    });*/
   });
 }

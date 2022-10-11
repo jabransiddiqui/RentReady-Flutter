@@ -20,9 +20,29 @@ Technical Assessment - Flutter Developer for Rent Ready.
 
 ## How to Run
 
-- [Install Flutter](https://flutter.dev/docs/get-started)
-- git clone 
-- flutter run
+ - [Install docker desktop](https://www.docker.com)
+ - login to you docker
+ - create dev enviorment from docker desktop app
+    - selet option of eisting repo and enter https://github.com/jibransiddiqui/RentReady-Flutter
+
+     ![Alt text](/lib/assets/images/docker1.png?raw=true "docker")
+
+    - this will create the dev enviorment for flutter app
+
+    ![Alt text](/lib/assets/images/docker2.png?raw=true "docker")
+   
+- install visual code and docker and remote enviorment extension inside vs code
+
+- open the dev enviorment you created inside the docker app with visual code
+
+![Alt text](/lib/assets/images/docker3.png?raw=true "docker")
+
+-  inside folder terminal :    flutter run
+## Dcoker Image
+ [my docker image](https://hub.docker.com/repository/docker/jabransiddiqui/dev-environments)
+
+ # Note:
+    You need to add access token in the app.secrets.dart file under lib/env/, for accesstoken please email me : jabransiddiqui@outlook.com
 
 # iOS Quicker
     iOS Notes here.
