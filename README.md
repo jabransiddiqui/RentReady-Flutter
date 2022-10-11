@@ -42,7 +42,8 @@ Technical Assessment - Flutter Developer for Rent Ready.
  [my docker image](https://hub.docker.com/repository/docker/jabransiddiqui/dev-environments)
 
  # Note:
-    You need to add access token in the app.secrets.dart file under lib/env/, for accesstoken please email me : jabransiddiqui@outlook.com
+    You need to add access token in the app.secrets.dart file under lib/env/, 
+    for accesstoken please email me : jabransiddiqui@outlook.com
 
 # iOS Quicker
     iOS Notes here.
