@@ -18,8 +18,12 @@ Technical Assessment - Flutter Developer for Rent Ready.
  - UI components tests
  - Build scripts should be implemented inside a docker container
 
-## How to Run
-
+# How to Run
+## Manual Run
+    Install Flutter
+    git clone
+    flutter run
+## Docker
  - [Install docker desktop](https://www.docker.com)
  - login to you docker
  - create dev enviorment from docker desktop app
@@ -44,7 +48,6 @@ Technical Assessment - Flutter Developer for Rent Ready.
  # Note:
     You need to add access token in the app.secrets.dart file under lib/env/, 
     for accesstoken please email me : jabransiddiqui@outlook.com
-
 # iOS Quicker
     iOS Notes here.
 # Android Quicker
